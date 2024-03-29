@@ -17,4 +17,18 @@ export default class ProductService {
       throw new BaseError(error.name, error.statusCode);
     }
   }
+
+  public findBySlug(slug: string): Product | undefined {
+    try {
+      const product = this.productRepository.findBySlug(slug);
+
+      if (!product) {
+        throw new BaseError("Product not found", 404);
+      }
+
+      return product;
+    } catch (error: any) {
+      throw new BaseError(error.name, error.statusCode);
+    }
+  }
 }
