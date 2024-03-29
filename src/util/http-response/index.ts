@@ -25,6 +25,7 @@ export const returnErrorResponse = ({
   message = "Internal server error",
   data,
 }: ErrorResponseOptions) => {
+  error && console.error(error);
   response.status(statusCode).json({ status: "error", message, errors, data });
 };
 
