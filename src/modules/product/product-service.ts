@@ -18,7 +18,7 @@ export default class ProductService {
     }
   }
 
-  public findBySlug(slug: string): Product | undefined {
+  public findBySlug(slug: string): Partial<Product> {
     try {
       const product = this.productRepository.findBySlug(slug);
 
