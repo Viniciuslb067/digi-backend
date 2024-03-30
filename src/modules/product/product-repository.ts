@@ -21,13 +21,16 @@ export default class ProductRepository {
     }
   }
 
-  public findBySlug(slug: string): Product | undefined {
+  public findBySlug(slug: string): Partial<Product> {
     try {
       const product = products.find(
         (product) => generateSlug(product.name) === slug
       );
 
-      return product;
+      return {
+        ...product,
+        slug: generateSlug(product?.name || ""),
+      };
     } catch (error: any) {
       throw new Api500Error(
         "Ocorreu um erro inesperado ao tentar recuperar o produto.",
